@@ -15,9 +15,9 @@ wss.on("connection",
 
         ws.onmessage =
             (event) => {
-                const msg = JSON.parse(event.data);
-                console.log(`Client messaging: ${msg}`);
-                let payload = JSON.parse(msg);
+                console.log(`Client messaging:`);
+                console.log(event.data);
+                const payload = JSON.parse(event.data);
                 parseAction(payload, ws);
             }
         // handling what to do when clients disconnects from server
@@ -35,7 +35,7 @@ wss.on("connection",
 const port = process.env.PORT || 3000;
 httpServer.listen(port, () => { console.log("Server started. Port: ", port); });
 
-console.log("The WebSocket server is running on port 8082");
+console.log("The WebSocket server is running on port 3000");
 
 const Action = Object.freeze({
     "NewUser": 'new-user',
